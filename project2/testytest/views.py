@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from testytest.models import Product
 
 def home_view(request, *args, **kwargs):
     return render(request, 'testytest/home.html', {})
@@ -19,3 +20,16 @@ def about_view(request, *args, **kwargs):
 
 # def home_view(request, *args, **kwargs):
 #     return render(request, 'home.html', {})
+
+def product_detail_view(request):
+    obj = Product.objects.get(id=1)
+    # context = {
+    #     'title': obj.title,
+    #     'description': obj.description,
+    #
+    # }
+    context = {
+        'object': obj
+    }
+
+    return render(request, "testytest/product/detail.html", context)
