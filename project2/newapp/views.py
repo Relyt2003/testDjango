@@ -1,7 +1,7 @@
 from django.views.generic import ListView, UpdateView, CreateView, DeleteView, DetailView
 from .models import Post, Author
-from .filters import PostFilter
-from .forms import PostForm, UserForm
+from .filters import PostFilter, CategoryFilter
+from .forms import PostForm, UserForm, SubscribeForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from django.contrib.auth.models import User
@@ -100,3 +100,29 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, **kwargs):
         return self.request.user
 
+
+class SubsCreateView(CreateView):
+    #permission_required = ('newapp.add_post')
+    template_name = 'newapp/subscribe.html'
+    form_class = SubscribeForm
+    success_url = '/news/search/'
+
+
+    # def get_queryset(self, request):
+    #     id = request.user.id
+    #     return User.objects.filter(id=id)
+
+
+    # def get_context_data(self, **kwargs):  # забираем отфильтрованные объекты переопределяя метод get_context_data у наследуемого класса (привет, полиморфизм, мы скучали!!!)
+    #     context = super().get_context_data(**kwargs)
+    #     #context['subsThrough'] = CategoryFilter(self.request.GET, queryset=self.get_queryset())  # вписываем наш фильтр в контекст
+    #     context['UserThrough'] = self.request.user
+    #     return context
+
+    # def get_context_data(self, **kwargs):
+    #     context = UpdateView.get_context_data(self, **kwargs)
+    #     context["event"] = Event.objects.get(id=1)
+    #     context["volunteers"] = Volunteer.objects.all()
+    #     return context
+    #
+    # 'subsThrough', 'userThrough'

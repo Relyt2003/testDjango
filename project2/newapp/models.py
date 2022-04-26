@@ -66,8 +66,9 @@ class PostCategory(models.Model):
     postThrough = models.ForeignKey(Post, on_delete=models.CASCADE)
     categoryThrough = models.ForeignKey(Category, on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return f'{self.categoryThrough.name}'
+    def __str__(self):
+
+        return f'{self.categoryThrough.name}'
 
 class SubsUser(models.Model):
     subsThrough = models.ForeignKey(Category, on_delete=models.CASCADE)

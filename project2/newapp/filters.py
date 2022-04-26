@@ -1,7 +1,7 @@
 from django_filters import FilterSet, CharFilter, ModelChoiceFilter, DateFilter
-from .models import Post, Author, Category, PostCategory
+from .models import Post, Author, PostCategory, SubsUser
 from django.forms import widgets
-
+from django.contrib.auth.models import User
 
 # создаём фильтр
 class PostFilter(FilterSet):
@@ -17,9 +17,19 @@ class PostFilter(FilterSet):
     #title = ModelChoiceFilter(queryset=Post.objects.all(), label="Заголовок")
     #title = CharFilter(lookup_expr='icontains', label="Заголовок")
     author = ModelChoiceFilter(queryset=Author.objects.all(), label="Автор")
-    #category = ModelChoiceFilter(queryset=PostCategory.objects.all(), label="Категория")
+    postCategory = ModelChoiceFilter(queryset=PostCategory.objects.all(), label="Категория")
 
     # в мета классе предоставляем модель и указываем поля, по которым будет фильтроваться информация
     class Meta:
         model = Post
         fields = ('author', 'postCategory', 'date')
+
+class CategoryFilter(FilterSet):
+    user = ModelChoiceFilter(queryset=User.objects.all(), label="Пользователь")
+    postCategory = ModelChoiceFilter(queryset=PostCategory.objects.all(), label="Категория")
+    #category = ModelChoiceFilter(queryset=PostCategory.objects.all(), label="Категория")
+
+    # в мета классе предоставляем модель и указываем поля, по которым будет фильтроваться информация
+    class Meta:
+        model = SubsUser
+        fields = ('user', 'postCategory')

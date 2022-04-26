@@ -50,7 +50,10 @@ INSTALLED_APPS = [
     # ... include the providers you want to enable:
     'allauth.socialaccount.providers.google',
     'appointment',
-    'testytest'
+    'testytest',
+    'blog',
+    'posts',
+    'profiles',
 ]
 
 

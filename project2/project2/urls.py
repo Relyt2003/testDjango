@@ -28,4 +28,5 @@ urlpatterns = [
     path('appointments/', include(('appointment.urls', 'appointments'), namespace='appointments')),
     path('accounts/', include('allauth.urls')),
     path('tyt/', include(('testytest.urls', 'tyt'), namespace='tyt')),
+    path('blog/', include(('blog.urls', 'blog'), namespace='blog')),
 ]

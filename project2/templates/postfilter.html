@@ -27,7 +27,8 @@
                <td>{{ post.title|censor }}</td>
                <td>{{ post.dateCreation|date:'d M Y' }}</td>
                <td>{{ post.text|truncatewords:4|censor }}</td>
-               <td>{{ post.postCategory.all }}</td>
+               <td>{% for i in post.postCategory.all %}
+                   {{ i.name }} {% endfor %} </td>
            </tr>
            {% endfor %}
 
@@ -35,5 +36,8 @@
    {% else %}
        <h2>Товаров нет!</h2>
    {% endif %}
+
+<hr>
+<h1><a href='/news/subscribe/'> Subscribe  </a></h1>
 
 {% endblock content %}
